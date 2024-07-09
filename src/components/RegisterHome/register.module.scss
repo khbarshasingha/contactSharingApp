@@ -1,0 +1,30 @@
+.registerHome {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    &_leftImage {
+        background: #b8d9f3;
+        height: 100%;
+        display: flex;
+        width: 100%;
+    }
+
+    &_card {
+        background-color: white;
+        height: fit-content;
+        border-radius: 10px;
+        width: fit-content;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-self: center;
+
+        .tabs {
+            padding: 20px;
+            display: flex;
+            column-gap: 20px;
+            border-bottom: 2px solid #c9ecef;
+        }
+    }
+}
