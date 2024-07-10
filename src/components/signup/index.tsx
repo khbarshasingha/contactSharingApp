@@ -6,15 +6,20 @@ import React from "react";
 import { Button } from "@mui/material";
 import SignUp from "../../firebase/auth/signup";
 import SignIn from "@/firebase/auth/signin";
+import AddUser from "@/firebase/user";
 
 const SignUpComponent = () => {
   const handleSubmit = async (email: string, password: string) => {
-    const{error, result}= await SignUp(password, email);
-
+    const { error, result } = await SignUp(password, email);
+    // if (result) {
+    //   console.log("entering useer");
+    //   const response = await AddUser(email);
+    //   console.log("user addition response", response);
+    // }
     if (error) {
-      alert("Error on signup");
+      alert(error);
     }
-    console.log(result);
+    console.log("resultttt",result);
   };
 
   const signupFormik = useFormik({
@@ -25,9 +30,8 @@ const SignUpComponent = () => {
     },
   });
 
-
   return (
-    <form className={styles.signup} onSubmit={signupFormik.handleSubmit} >
+    <form className={styles.signup} onSubmit={signupFormik.handleSubmit}>
       <div className={styles.email}>
         <label>Email</label>
         <TextField
@@ -43,7 +47,7 @@ const SignUpComponent = () => {
       <div className={styles.password}>
         <label>Password</label>
         <TextField
-        name="password"
+          name="password"
           type="password"
           placeholder="Enter your email id"
           // id="outlined-basic"
