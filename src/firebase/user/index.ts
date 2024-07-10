@@ -1,14 +1,14 @@
 import { db } from "@/config/firebase";
 import { collection, addDoc } from "firebase/firestore";
-const AddUser = async (email: string) => {
+export const AddUser = async (email: string) => {
     try {
         const docRef = await addDoc(collection(db, "users"), {
-            company:"",
+            company: "",
             email: email,
-            link:"",
-            name:"",
-            phone:"",
-            title:""
+            link: "",
+            name: "",
+            phone: "",
+            title: ""
         });
         console.log("Document written with ID: ", docRef.id);
         console.log("Document written with ID: ", docRef);
@@ -17,4 +17,9 @@ const AddUser = async (email: string) => {
         console.error("Error adding document: ", e);
     }
 };
-export default AddUser;
+
+
+// const UpdateUserInfo=async ()=>{
+
+// }
+

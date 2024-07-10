@@ -33,7 +33,6 @@ const SignInComponent = () => {
           type="text"
           name="email"
           placeholder="Enter your email id"
-          // id="outlined-basic"
           variant="outlined"
           value={signupFormik.values.email}
           onChange={signupFormik.handleChange}
@@ -44,8 +43,7 @@ const SignInComponent = () => {
         <TextField
           name="password"
           type="password"
-          placeholder="Enter your email id"
-          // id="outlined-basic"
+          placeholder="Enter your password"
           variant="outlined"
           value={signupFormik.values.password}
           onChange={signupFormik.handleChange}
@@ -53,7 +51,7 @@ const SignInComponent = () => {
       </div>
       <div>
         <Button
-          // sx={{ background: "#2d7881" }}
+          sx={{ backgroundColor: "#FC6719", color: "white" }}
           type="submit"
           variant="contained"
         >

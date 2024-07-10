@@ -2,24 +2,24 @@
 import TextField from "@mui/material/TextField";
 import styles from "./signup.module.scss";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import SignUp from "../../firebase/auth/signup";
-import SignIn from "@/firebase/auth/signin";
-import AddUser from "@/firebase/user";
+import { useRouter } from "next/navigation";
 
 const SignUpComponent = () => {
+  const router = useRouter();
+
   const handleSubmit = async (email: string, password: string) => {
-    const { error, result } = await SignUp(password, email);
-    // if (result) {
-    //   console.log("entering useer");
-    //   const response = await AddUser(email);
-    //   console.log("user addition response", response);
-    // }
-    if (error) {
+    const { userRes, error } = await SignUp(password, email);
+    if (userRes) {
+      console.log(" successfully registered");
+      router.push("/my-qr-code");
+    } else if (error) {
       alert(error);
+    } else {
+      alert(" An unexpected error occured");
     }
-    console.log("resultttt",result);
   };
 
   const signupFormik = useFormik({
@@ -32,32 +32,35 @@ const SignUpComponent = () => {
 
   return (
     <form className={styles.signup} onSubmit={signupFormik.handleSubmit}>
+      hello from signup
       <div className={styles.email}>
         <label>Email</label>
         <TextField
           type="text"
           name="email"
           placeholder="Enter your email id"
-          // id="outlined-basic"
           variant="outlined"
           value={signupFormik.values.email}
           onChange={signupFormik.handleChange}
         />
       </div>
       <div className={styles.password}>
-        <label>Password</label>
+        <label style={{ color: "white" }}>Password</label>
         <TextField
           name="password"
           type="password"
-          placeholder="Enter your email id"
-          // id="outlined-basic"
+          placeholder="Enter your password"
           variant="outlined"
           value={signupFormik.values.password}
           onChange={signupFormik.handleChange}
         />
       </div>
       <div>
-        <Button type="submit" variant="contained">
+        <Button
+          sx={{ backgroundColor: "#FC6719", color: "white" }}
+          type="submit"
+          variant="contained"
+        >
           Submit
         </Button>
       </div>
